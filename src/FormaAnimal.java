@@ -30,7 +30,7 @@ public class FormaAnimal extends JFrame {
 	FormaAnimal(){
             setLayout(new FlowLayout());	
             this.setResizable(false); 
-		
+		//hola
             eNombre=new JLabel("Nombre");
             tNombre=new JTextField(20);
 		
