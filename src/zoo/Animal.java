@@ -35,6 +35,10 @@ public class Animal {
         setPatas(patas);
         setPeligrosidad(peligrosidad);
     }
+
+    Animal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     /**@param nombre:nombre del animal
      sirve para asignarle el nombre al animal que guardamos en la base de datos*/
     
@@ -81,7 +85,7 @@ public class Animal {
     
     //METODO AÑADIR ANIMAL
     /**con este metodo podemos guardar el animal que queramos introducir en nuestro zoo*/
-    public void guarda(Animal a)  {
+    public void añadirAnimal(Animal a)  {
 	try {			
             String NCompleto=a.getNombre()+" "+a.getOjos()+" "+a.getPatas()+" "+a.getPeligrosidad();
 
@@ -122,7 +126,7 @@ public class Animal {
 	}
     //METODO BORRAR ANIMAL
     /**este metodo nos permite borrar un animal que nosotros deseemos*/
-    public void borra(Animal a)  {
+    public void borrarAnimal(Animal a)  {
 	try {			
 
             String Driver = "com.mysql.cj.jdbc.Driver";
@@ -159,7 +163,7 @@ public class Animal {
     }
 	//METODO MOSTRAR DETALLES ANIMAL
 	/**nos muestra en detalle todas las caracteristicas del animal seleccionado*/ 
-        public void muestraAnimal(Animal a) {
+        public void verAnimal(Animal a) {
             String AnimalCompleto=a.getNombre()+" "+a.getOjos()+" "+a.getPatas()+""+a.getPeligrosidad();
             String nombre=a.getNombre();
 		
@@ -178,7 +182,7 @@ public class Animal {
 	
 	//MODIFICAR ANIMALES
         /**Este metodo nos permite modificar un animal en cuestión*/
-	public void modificaAnimal(Animal a)  {
+	public void modificarAnimal(Animal a)  {
             try {			
                 String Driver = "com.mysql.cj.jdbc.Driver";
 		String URL = "jdbc:mysql://localhost:3306/ZOO?ussesSSL=false&serverTimezone=UTC";

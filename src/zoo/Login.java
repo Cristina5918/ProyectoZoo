@@ -5,9 +5,15 @@
  */
 package zoo;
 
-import java.awt.Component;
-import java.awt.Rectangle;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,36 +24,90 @@ import javax.swing.JTextField;
  *
  * @author crist
  */
-public class Login{
-    private Component confirmacion;
-    private String usuario;
-  //  private String usuario1;
-    private String password;
-   // private String contraseña1;
+public class Login extends JPanel{
     
-    // la ñ no mola nada
+    JTextField usuario = null;
+    JPasswordField pass=null;
     
-    public JPanel createLogin(JPanel entrar){
+    
+    public Login(){
+        JPanel login=new JPanel();
+        
+        JLabel user=new JLabel("USUARIO");
+        user.setBounds(20,20, 80,30);
+        usuario=new JTextField(20);
+        usuario.setBounds(20,50,80,30);
         
         
-        JTextField campo=new JTextField();
-        campo.setBounds(new Rectangle(0, 100, 100, 50));
-        JPasswordField pass=new JPasswordField();
-        pass.setBounds(new Rectangle(0,150,100,50));
+        JLabel password=new JLabel("CONTRASEÑA");
+        password.setBounds(20,80, 80,30);
+        pass=new JPasswordField(20);
+        pass.setBounds(20,110,80,30);
         
-        JLabel u=new JLabel("USUARIO");
-        u.setBounds(new Rectangle(100,300,100,50)); //esto no se que hace
-        JLabel c=new JLabel("CONTRASEÑA");
-        c.setBounds(new Rectangle(0,200,100,50));
-        entrar.add(u); //no llames u a lo loco, llamalo como usuarioText o algo asi, para que quede claro
-        /*entrar.add(campo);
-        entrar.add(c); // igual aqui
-        entrar.add(pass);*/
+        JButton acceder=new JButton("ACCEDER");
+        acceder.setBounds(20,150,50,50);
         
-        entrar.setBounds(new Rectangle(0,0,800,600));
+        JLabel error=new JLabel("ERROR");
+        error.setBounds(20,80, 80,30);
         
-        return entrar;
+        
+        acceder.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                if(loguear()){
+                    //Para ver si funciona vamos a poner el fondo verde o rojo segun lo encuentre o no
+                    setBackground(Color.GREEN);
+                }else{
+                    //setBackground(Color.RED);
+                    login.add(error);
+                }
+            }
+        });
+        
+        login.add(user);
+        login.add(usuario);
+        login.add(password);
+        login.add(pass);
+        login.add(acceder);
+       
+        login.setSize(500,500);
+        
+        add(login);
     }
     
+    public boolean loguear(){
+        String usuario = this.usuario.getText();
+        String password = new String(this.pass.getPassword());
+        
+        if(usuario.equals("")||password.equals("")){
+            JOptionPane.showMessageDialog(this, "Usuario y/o contraseña vacíos, por favor rellene los campos",
+                    "Error!!",JOptionPane.ERROR_MESSAGE); 
+        }else if(!usuario.equals("")&&!password.equals("")){
+            // Ahora abrimos una conexion con la base de datos para ver 
+            BaseDatos bbdd = new BaseDatos();
+            //si tenemos el usuario; Primero miramos si existe el usuario
+            String sql="SELECT * FROM USUARIO WHERE LOGIN='"+usuario+"'";
+            Usuario u = bbdd.executeGetUsuario(sql);
+            if(u!=null){
+                //Existe el usuario, vamos a ver si coinciden las contraseñas
+                //Si existe miramos si coinciden las contraseñas, si no, login erroneo
+                if(u.getPassword().equals(password)){
+                    return true; 
+                }else{
+                    JOptionPane.showMessageDialog(this, "La contraseña no coincide",
+                    "Error!!",JOptionPane.ERROR_MESSAGE); //esto es dar muchas pistas jeje
+                }
+            }else{
+                //No existe el usuario
+                JOptionPane.showMessageDialog(this, "No existe un usuario cone esos datos",
+                    "Error!!",JOptionPane.ERROR_MESSAGE);
+            }
+           
+        }else{
+            JOptionPane.showMessageDialog(this, "Usuario y/o contraseña vacíos, por favor rellene los campos",
+                    "Error!!",JOptionPane.ERROR_MESSAGE);   
+        }
+        
+        return false;
+    }
 }
 
