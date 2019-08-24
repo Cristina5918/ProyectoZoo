@@ -26,6 +26,8 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
     private JTable Animal=null;
     DefaultTableModel tabla=null;
     
+    
+    
     Connection con =null;
     PreparedStatement pstm =null;
     ResultSet rs=null;

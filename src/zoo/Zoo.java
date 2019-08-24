@@ -46,7 +46,7 @@ public class Zoo extends JFrame {
     }
     Zoo(){
         
-        JFrame zoo=new JFrame("BIENVENIDO");
+        JFrame zoo=new JFrame("BIENVENIDO AL ZOO");
         zoo.setSize(800,600);
         /*login = new Login();
         zoo.add(login);*/
