@@ -28,6 +28,7 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
     
     
     
+    
     Connection con =null;
     PreparedStatement pstm =null;
     ResultSet rs=null;
