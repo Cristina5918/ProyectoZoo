@@ -6,7 +6,11 @@
 package zoo;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -14,6 +18,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,53 +30,58 @@ import javax.swing.JTextField;
  * @author crist
  */
 public class Login extends JPanel{
-    
+	JPanel login = null;
     JTextField usuario = null;
     JPasswordField pass=null;
     
-    
-    public Login(){
-        JPanel login=new JPanel();
+   
+    public Login(JFrame zoo){
+        
+        //login.setLayout(null);
         
         JLabel user=new JLabel("USUARIO");
-        user.setBounds(20,20, 80,30);
-        usuario=new JTextField(20);
-        usuario.setBounds(20,50,80,30);
-        
-        
-        JLabel password=new JLabel("CONTRASEÃ‘A");
-        password.setBounds(20,80, 80,30);
-        pass=new JPasswordField(20);
-        pass.setBounds(20,110,80,30);
+        usuario=new JTextField();
+        JLabel password=new JLabel("CONTRASEÑA");
+        pass=new JPasswordField();
         
         JButton acceder=new JButton("ACCEDER");
-        acceder.setBounds(20,150,50,50);
         
-        JLabel error=new JLabel("ERROR");
-        error.setBounds(20,80, 80,30);
+        JLabel error=new JLabel();
         
         
-        acceder.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                if(loguear()){
-                    //Para ver si funciona vamos a poner el fondo verde o rojo segun lo encuentre o no
-                    setBackground(Color.GREEN);
-                }else{
-                    //setBackground(Color.RED);
-                    login.add(error);
-                }
-            }
-        });
+        login=new JPanel(new GridLayout(6,1,50,10));
         
+        
+        login.add(error);
         login.add(user);
         login.add(usuario);
         login.add(password);
         login.add(pass);
         login.add(acceder);
        
-        login.setSize(500,500);
+        login.setVisible(true);
         
         add(login);
+        
+        acceder.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                if(true/*loguear()*/){
+                    //Para ver si funciona vamos a poner el fondo verde o rojo segun lo encuentre o no
+                    //accesoMenuPrincipal();
+                	accesoMenuPrincipal(zoo);
+                }else{
+                    //setBackground(Color.RED);
+                    //login.add(error);
+                }
+            }
+        });
+    }
+    
+    public void accesoMenuPrincipal(JFrame zoo) {
+    	login.setVisible(false);
+    	JPanel menuprincipal = new MPrincipal();
+    	zoo.add(menuprincipal,BorderLayout.CENTER);
+    	zoo.setTitle("MENU PRINCIPAL");
     }
     
     public boolean loguear(){

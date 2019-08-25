@@ -36,6 +36,7 @@ import javax.swing.JTextField;
  */
 public class Zoo extends JFrame {
     
+	JFrame zoo;
     private Login login;
     private MPrincipal menuprincipal;
     /**
@@ -47,20 +48,27 @@ public class Zoo extends JFrame {
     Zoo(){
         
         
-        JFrame zoo=new JFrame("BIENVENIDO AL ZOO");
-        zoo.setSize(800,600);
-        /*login = new Login();
-        zoo.add(login);*/
-        //dejamos eso ahi parado que ya sabemos que funciona, hacemos atajo al menu principal
-        menuprincipal = new MPrincipal();
-        zoo.add(menuprincipal);
+        zoo=new JFrame("BIENVENIDO AL ZOO");
         
-        zoo.setResizable(true);
-        zoo.setVisible(true);
-        //login.setLayout(new FlowLayout(FlowLayout.CENTER,10,50) );
-        menuprincipal.setLayout(new FlowLayout(FlowLayout.CENTER,10,50) );
         zoo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        login = new Login(zoo);
+        zoo.add(login,BorderLayout.CENTER);
+        zoo.setSize(500,500); 
+        zoo.setVisible(true);
+        
+        //dejamos eso ahi parado que ya sabemos que funciona, hacemos atajo al menu principal
+        /*menuprincipal = new MPrincipal();
+        zoo.add(menuprincipal);*/
+
+       
+        //login.setLayout(new FlowLayout(FlowLayout.CENTER,10,50) );
+//        menuprincipal.setLayout(new FlowLayout(FlowLayout.CENTER,10,50) );
+       
+        
     } 
+    
+   
+    
     
 }

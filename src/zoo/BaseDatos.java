@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,7 +54,6 @@ public class BaseDatos {
                 Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
             }
         finally{
-            
             try {
                 pstm.close();
             } catch (SQLException ex) {
@@ -61,6 +62,39 @@ public class BaseDatos {
         }
         return u;
         
+    }
+    
+    public List<Usuario> getAllUsers(){
+    	List<Usuario> returnList = new ArrayList<>();
+    	ResultSet rs = null;
+        PreparedStatement pstm = null;
+    	String sql = "SELECT * FROM USUARIOS";
+    	try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+            	Usuario u = new Usuario();
+            	u.setNombre(rs.getString("nombre"));
+                u.setApellido(rs.getString("apellido"));
+                u.setEdad(rs.getInt("edad"));
+                u.setRol(rs.getBoolean("rol"));
+                u.setLogin(rs.getString("login"));
+                u.setPassword(rs.getString("password"));
+                returnList.add(u);
+            }
+    	}catch (Exception e) {
+    		e.printStackTrace();
+		}finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    	return returnList;
+    	
     }
     
     public void closeConection() throws SQLException{
