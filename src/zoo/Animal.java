@@ -83,9 +83,9 @@ public class Animal {
         return peligrosidad;
     }
     
-    //METODO AñaADIR ANIMAL
+    //METODO Aï¿½aADIR ANIMAL
     /**con este metodo podemos guardar el animal que queramos introducir en nuestro zoo*/
-    public void añaadirAnimal(Animal a)  {
+    public void aÃ±adirAnimal(Animal a)  {
 	try {			
             String NCompleto=a.getNombre()+" "+a.getOjos()+" "+a.getPatas()+" "+a.getPeligrosidad();
 

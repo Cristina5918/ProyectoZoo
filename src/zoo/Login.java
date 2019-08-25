@@ -41,7 +41,7 @@ public class Login extends JPanel{
         
         JLabel user=new JLabel("USUARIO");
         usuario=new JTextField();
-        JLabel password=new JLabel("CONTRASEÑA");
+        JLabel password=new JLabel("CONTRASEÃ‘A");
         pass=new JPasswordField();
         
         JButton acceder=new JButton("ACCEDER");
@@ -65,10 +65,10 @@ public class Login extends JPanel{
         
         acceder.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                if(true/*loguear()*/){
+                if(loguear()){
                     //Para ver si funciona vamos a poner el fondo verde o rojo segun lo encuentre o no
                     //accesoMenuPrincipal();
-                	accesoMenuPrincipal(zoo);
+                    accesoMenuPrincipal(zoo);
                 }else{
                     //setBackground(Color.RED);
                     //login.add(error);
@@ -79,7 +79,8 @@ public class Login extends JPanel{
     
     public void accesoMenuPrincipal(JFrame zoo) {
     	login.setVisible(false);
-    	JPanel menuprincipal = new MPrincipal();
+    	JPanel menuprincipal = new MPrincipal(zoo);
+        menuprincipal.setVisible(true);
     	zoo.add(menuprincipal,BorderLayout.CENTER);
     	zoo.setTitle("MENU PRINCIPAL");
     }

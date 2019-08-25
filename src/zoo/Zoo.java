@@ -52,8 +52,10 @@ public class Zoo extends JFrame {
         
         zoo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        login = new Login(zoo);
-        zoo.add(login,BorderLayout.CENTER);
+        //login = new Login(zoo);
+        //zoo.add(login,BorderLayout.CENTER);
+        menuprincipal = new MPrincipal(zoo);
+        zoo.add(menuprincipal,BorderLayout.CENTER);
         zoo.setSize(500,500); 
         zoo.setVisible(true);
         

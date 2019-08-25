@@ -33,9 +33,9 @@ public class MPrincipal extends JPanel {
 	/**
 	 * Constructor para la clase MenuPrincipal
 	*/
-	MPrincipal(){
+	MPrincipal(JFrame zoo){
 
-		//creamos la estructura de pestañas que contendra las pestañas
+		//creamos la estructura de pestaï¿½as que contendra las pestaï¿½as
 		JTabbedPane tabs = new JTabbedPane();
 		
 		JPanel usuarios = new JPanel();		
@@ -44,9 +44,12 @@ public class MPrincipal extends JPanel {
 		gestionUsuarios = new GestionUsuarios();
 		gestionUsuarios.setLocation(0,0);
 		gestionUsuarios.setSize(500,500);
+                gestionUsuarios.setVisible(true);
 	
 		usuarios.add(gestionUsuarios,BorderLayout.WEST);
 		tabs.addTab("Usuarios", usuarios);
+                
+                zoo.getContentPane().add(tabs);
 
         
     }

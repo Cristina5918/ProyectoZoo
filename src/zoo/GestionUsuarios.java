@@ -20,6 +20,7 @@ public class GestionUsuarios extends JPanel{
 		modelo.addColumn("Password");
 		modelo.addColumn("Edad");
 		modelo.addColumn("Rol");
+                //modelo.addColumn("Acciones");
 		
 		List<Usuario> usuariosBBDD = getAllUsers();
 		if(usuariosBBDD!=null && usuariosBBDD.size()>0) {

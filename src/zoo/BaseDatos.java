@@ -68,7 +68,7 @@ public class BaseDatos {
     	List<Usuario> returnList = new ArrayList<>();
     	ResultSet rs = null;
         PreparedStatement pstm = null;
-    	String sql = "SELECT * FROM USUARIOS";
+    	String sql = "SELECT * FROM USUARIO";
     	try{
             Class.forName(Driver);
             con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
