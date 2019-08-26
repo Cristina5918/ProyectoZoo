@@ -41,7 +41,7 @@ public class MPrincipal extends JPanel {
 		
 		gestionUsuarios = new GestionUsuarios();
 		gestionUsuarios.setLocation(0,0);
-		gestionUsuarios.setSize(500,400);
+		//gestionUsuarios.setSize(500,300);
         gestionUsuarios.setVisible(true);
 	
 		usuarios.add(gestionUsuarios);

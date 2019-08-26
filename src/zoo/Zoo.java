@@ -57,7 +57,7 @@ public class Zoo extends JFrame {
         /*menuprincipal = new MPrincipal(zoo);
         zoo.add(menuprincipal,BorderLayout.CENTER);*/
         zoo.setResizable(false);
-        zoo.setSize(500,500); 
+        zoo.setSize(500,600);
         zoo.setVisible(true);
         
         //dejamos eso ahi parado que ya sabemos que funciona, hacemos atajo al menu principal

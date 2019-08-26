@@ -11,8 +11,10 @@ public class GestionUsuarios extends JPanel{
 	JTable usuarios = null;
 	
 	GestionUsuarios(){
-		setLayout(new GridLayout(2,1,0,0));
+		setLayout(new BorderLayout());
 		JButton borraButton = new JButton("Borrar usuario");
+		JButton addButton = new JButton("Aniadir usuario");
+		JButton editButton = new JButton("Editar usuario");
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
@@ -36,21 +38,25 @@ public class GestionUsuarios extends JPanel{
 			}
 		}
 
-		/*Object[] filaOpciones = new Object[6];
-		filaOpciones[0] = "";
-		filaOpciones[1] = "";
-		filaOpciones[2] = "";
-		filaOpciones[3] = "";
-		filaOpciones[4] = borraButton;
-		filaOpciones[5] = "";
-		modelo.addRow(filaOpciones);*/
-
-
 		usuarios = new JTable(modelo);
 		
 		JScrollPane barra=new JScrollPane(usuarios);
 	    barra.setVisible(true);
-	    add(barra);
+	    barra.setMaximumSize(new Dimension(500,300));
+	    add(barra, BorderLayout.CENTER);
+
+	    JPanel contenedorBotonera = new JPanel(new GridLayout(1,3,30,30));
+	    contenedorBotonera.setSize(500,100);
+	    contenedorBotonera.setMaximumSize(new Dimension(500,100));
+	    JLabel vacio = new JLabel();
+		JLabel vacio2 = new JLabel();
+
+	    contenedorBotonera.add(addButton);
+		contenedorBotonera.add(editButton);
+	    contenedorBotonera.add(borraButton);
+
+
+	    add(contenedorBotonera, BorderLayout.SOUTH);
 
 		
 	}
