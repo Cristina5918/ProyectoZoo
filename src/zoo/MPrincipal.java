@@ -5,7 +5,7 @@
  */
 package zoo;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,22 +35,19 @@ public class MPrincipal extends JPanel {
 	*/
 	MPrincipal(JFrame zoo){
 
-		//creamos la estructura de pesta�as que contendra las pesta�as
 		JTabbedPane tabs = new JTabbedPane();
 		
-		JPanel usuarios = new JPanel();		
-		usuarios.setLayout(null);
+		JPanel usuarios = new JPanel();
 		
 		gestionUsuarios = new GestionUsuarios();
 		gestionUsuarios.setLocation(0,0);
-		gestionUsuarios.setSize(500,500);
-                gestionUsuarios.setVisible(true);
+		gestionUsuarios.setSize(500,400);
+        gestionUsuarios.setVisible(true);
 	
-		usuarios.add(gestionUsuarios,BorderLayout.WEST);
+		usuarios.add(gestionUsuarios);
 		tabs.addTab("Usuarios", usuarios);
-                
-                zoo.getContentPane().add(tabs);
-
+          
+		add(tabs);
         
     }
         

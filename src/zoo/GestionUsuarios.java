@@ -1,10 +1,9 @@
 package zoo;
 
+import java.awt.*;
 import java.util.List;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class GestionUsuarios extends JPanel{
@@ -12,7 +11,8 @@ public class GestionUsuarios extends JPanel{
 	JTable usuarios = null;
 	
 	GestionUsuarios(){
-
+		setLayout(new GridLayout(2,1,0,0));
+		JButton borraButton = new JButton("Borrar usuario");
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
@@ -35,12 +35,23 @@ public class GestionUsuarios extends JPanel{
 				modelo.addRow(fila);
 			}
 		}
-		
+
+		/*Object[] filaOpciones = new Object[6];
+		filaOpciones[0] = "";
+		filaOpciones[1] = "";
+		filaOpciones[2] = "";
+		filaOpciones[3] = "";
+		filaOpciones[4] = borraButton;
+		filaOpciones[5] = "";
+		modelo.addRow(filaOpciones);*/
+
+
 		usuarios = new JTable(modelo);
 		
 		JScrollPane barra=new JScrollPane(usuarios);
 	    barra.setVisible(true);
 	    add(barra);
+
 		
 	}
 	

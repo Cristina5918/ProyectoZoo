@@ -35,13 +35,13 @@ public class Login extends JPanel{
     JPasswordField pass=null;
     
    
-    public Login(JFrame zoo){
+    public Login(final JFrame zoo){
         
         //login.setLayout(null);
         
         JLabel user=new JLabel("USUARIO");
         usuario=new JTextField();
-        JLabel password=new JLabel("CONTRASEÑA");
+        JLabel password=new JLabel("CONTRASENIA");
         pass=new JPasswordField();
         
         JButton acceder=new JButton("ACCEDER");
@@ -62,6 +62,8 @@ public class Login extends JPanel{
         login.setVisible(true);
         
         add(login);
+
+        zoo.getRootPane().setDefaultButton(acceder);
         
         acceder.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -78,10 +80,10 @@ public class Login extends JPanel{
     }
     
     public void accesoMenuPrincipal(JFrame zoo) {
-    	login.setVisible(false);
+        login.setVisible(false);
     	JPanel menuprincipal = new MPrincipal(zoo);
-        menuprincipal.setVisible(true);
     	zoo.add(menuprincipal,BorderLayout.CENTER);
+        menuprincipal.setVisible(true);
     	zoo.setTitle("MENU PRINCIPAL");
     }
     

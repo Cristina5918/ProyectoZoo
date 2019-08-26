@@ -22,7 +22,7 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
     private final long serialVersionUID=1;
     private JButton bLimpia=null;
     private JButton bCome=null;
-    private JButton bAñadir=null;
+    private JButton bAniadir=null;
     private JTable Animal=null;
     DefaultTableModel tabla=null;
     
@@ -48,9 +48,9 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
         add(deslizador);
         
         //Boton añadir animal
-        bAñadir=new JButton("Añadir animal");
-        bAñadir.setToolTipText("Añade un nuevo animal");
-        bAñadir.addActionListener(new ActionListener(){
+        bAniadir=new JButton("Aniadir animal");
+        bAniadir.setToolTipText("Aniade un nuevo animal");
+        bAniadir.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 FormaAnimal fa=new FormaAnimal() {
                     public void setLocation(int i, int i0) {
