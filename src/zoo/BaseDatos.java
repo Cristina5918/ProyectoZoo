@@ -100,5 +100,58 @@ public class BaseDatos {
     public void closeConection() throws SQLException{
         con.close();
     }
-    
+
+    public boolean deleteUsuario(String input) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "DELETE FROM USUARIO WHERE LOGIN = ?";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1,input);
+            int resultado = pstm.executeUpdate();
+            //Añadimos un JOptionPane para comunicar que el animal seleccionado se ha borrado correctamente
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
+
+    public boolean addUsusario(Usuario u) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "INSERT INTO USUARIO(nombre,apellido,edad,rol,login,password) VALUES" +
+                "('"+u.getNombre()+"','"+u.getApellido()+"',"+u.getEdad()+",0,'"+u.getLogin()+"','"+u.getPassword()+"')";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            int resultado = pstm.executeUpdate();
+            //Añadimos un JOptionPane para comunicar que el animal seleccionado se ha borrado correctamente
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
 }
