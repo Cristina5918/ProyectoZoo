@@ -154,4 +154,33 @@ public class BaseDatos {
         }
         return returnValue;
     }
+
+    public boolean editUsusario(Usuario ux) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "UPDATE USUARIO SET nombre='"+ux.getNombre()+"', apellido='"+ux.getApellido()+"'," +
+                "edad="+ux.getEdad()+"," +
+                "login='"+ux.getLogin()+"',password='"+ux.getPassword()+"'" +
+            "WHERE login='"+ux.getLogin()+"'";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            int resultado = pstm.executeUpdate();
+            //Añadimos un JOptionPane para comunicar que el animal seleccionado se ha borrado correctamente
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
 }
