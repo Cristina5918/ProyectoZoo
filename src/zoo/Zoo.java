@@ -46,29 +46,15 @@ public class Zoo extends JFrame {
         new Zoo();
     }
     Zoo(){
-        
-        
         zoo=new JFrame("BIENVENIDO AL ZOO");
         
         zoo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         login = new Login(zoo);
         zoo.add(login,BorderLayout.CENTER);
-        /*menuprincipal = new MPrincipal(zoo);
-        zoo.add(menuprincipal,BorderLayout.CENTER);*/
         zoo.setResizable(false);
-        zoo.setSize(500,600);
+        zoo.setSize(800,600);
         zoo.setVisible(true);
-        
-        //dejamos eso ahi parado que ya sabemos que funciona, hacemos atajo al menu principal
-        /*menuprincipal = new MPrincipal();
-        zoo.add(menuprincipal);*/
-
-       
-        //login.setLayout(new FlowLayout(FlowLayout.CENTER,10,50) );
-//        menuprincipal.setLayout(new FlowLayout(FlowLayout.CENTER,10,50) );
-       
-        
     } 
     
    

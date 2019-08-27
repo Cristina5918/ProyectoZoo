@@ -29,23 +29,29 @@ public class MPrincipal extends JPanel {
 	private static final long serialVersionUID = 1L;
 		
 	GestionUsuarios gestionUsuarios=null;
+	GestionAnimales gestionAnimales=null;
 	
 	/**
 	 * Constructor para la clase MenuPrincipal
 	*/
-	MPrincipal(JFrame zoo){
+	MPrincipal(JFrame zoo, boolean isAdmin){
 
 		JTabbedPane tabs = new JTabbedPane();
-		
-		JPanel usuarios = new JPanel();
-		
-		gestionUsuarios = new GestionUsuarios();
-		gestionUsuarios.setLocation(0,0);
-		//gestionUsuarios.setSize(500,300);
-        gestionUsuarios.setVisible(true);
-	
-		usuarios.add(gestionUsuarios);
-		tabs.addTab("Usuarios", usuarios);
+
+		if(isAdmin) {
+			JPanel usuarios = new JPanel();
+			gestionUsuarios = new GestionUsuarios();
+			gestionUsuarios.setLocation(0, 0);
+			gestionUsuarios.setVisible(true);
+			usuarios.add(gestionUsuarios);
+			tabs.addTab("Usuarios", usuarios);
+		}
+		JPanel animales = new JPanel();
+		gestionAnimales = new GestionAnimales();
+		gestionAnimales.setLocation(0,0);
+		gestionAnimales.setVisible(true);
+		animales.add(gestionAnimales);
+		tabs.addTab("Animales", animales);
           
 		add(tabs);
         

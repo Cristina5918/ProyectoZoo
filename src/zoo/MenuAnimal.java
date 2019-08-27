@@ -1,4 +1,4 @@
-
+/*
 package zoo;
 
 import java.awt.event.ActionEvent;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author crist
  */
 /**La clase de MenuAnimal nos permite saber sobre los animales del zoo*/
-public class MenuAnimal extends JPanel implements FormaAnimal{
+/*public class MenuAnimal extends JPanel implements FormaAnimal{
     private final long serialVersionUID=1;
     private JButton bLimpia=null;
     private JButton bCome=null;
@@ -33,7 +33,7 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
     PreparedStatement pstm =null;
     ResultSet rs=null;
     /**Constructor*/
-    MenuAnimal(){
+   /* MenuAnimal(){
         tabla= new DefaultTableModel();
         tabla.addColumn("Nombre");
         tabla.addColumn("Patas");
@@ -85,7 +85,7 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
     }  
     
     /**Rellenamos la tabla con todos los animales que tengamos en nuestra base de datos*/
-         public void Rellena(){
+       /*  public void Rellena(){
             try{
                 String Driver = "com.mysql.cj.jdbc.Driver";
                 String URL = "jdbc:mysql://localhost:3306/ZOO?ussesSSL=false&serverTimezone=UTC";			
@@ -127,7 +127,7 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
 	
         }
          /**Nos permite actualizar nuestra tabla de animales tanto si eliminamos como si añadimos un nuevo animal en nuestra base de datos*/
-        public void Actualiza() {
+        /*public void Actualiza() {
 		tabla.setRowCount(0);//se vacia el modelo		
 		Rellena();//se rellena otra vez	
 			
@@ -135,3 +135,4 @@ public class MenuAnimal extends JPanel implements FormaAnimal{
             
 }
 
+*/

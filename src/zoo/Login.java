@@ -33,6 +33,8 @@ public class Login extends JPanel{
 	JPanel login = null;
     JTextField usuario = null;
     JPasswordField pass=null;
+
+    boolean isAdmin = false;
     
    
     public Login(final JFrame zoo){
@@ -70,7 +72,7 @@ public class Login extends JPanel{
                 if(loguear()){
                     //Para ver si funciona vamos a poner el fondo verde o rojo segun lo encuentre o no
                     //accesoMenuPrincipal();
-                    accesoMenuPrincipal(zoo);
+                    accesoMenuPrincipal(zoo, isAdmin);
                 }else{
                     //setBackground(Color.RED);
                     //login.add(error);
@@ -79,9 +81,9 @@ public class Login extends JPanel{
         });
     }
     
-    public void accesoMenuPrincipal(JFrame zoo) {
+    public void accesoMenuPrincipal(JFrame zoo, boolean isAdmin) {
         login.setVisible(false);
-    	JPanel menuprincipal = new MPrincipal(zoo);
+    	JPanel menuprincipal = new MPrincipal(zoo, isAdmin);
     	zoo.add(menuprincipal,BorderLayout.CENTER);
         menuprincipal.setVisible(true);
     	zoo.setTitle("MENU PRINCIPAL");
@@ -104,6 +106,9 @@ public class Login extends JPanel{
                 //Existe el usuario, vamos a ver si coinciden las contraseñas
                 //Si existe miramos si coinciden las contraseñas, si no, login erroneo
                 if(u.getPassword().equals(password)){
+                    if(u.getRol()){
+                        isAdmin = true;
+                    }
                     return true; 
                 }else{
                     JOptionPane.showMessageDialog(this, "La contraseña no coincide",

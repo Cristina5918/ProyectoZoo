@@ -112,7 +112,6 @@ public class BaseDatos {
             pstm = con.prepareStatement(sql);
             pstm.setString(1,input);
             int resultado = pstm.executeUpdate();
-            //Añadimos un JOptionPane para comunicar que el animal seleccionado se ha borrado correctamente
             if (resultado==1) {
                 returnValue = true;
             }
@@ -139,7 +138,6 @@ public class BaseDatos {
             con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
             pstm = con.prepareStatement(sql);
             int resultado = pstm.executeUpdate();
-            //Añadimos un JOptionPane para comunicar que el animal seleccionado se ha borrado correctamente
             if (resultado==1) {
                 returnValue = true;
             }
@@ -168,7 +166,146 @@ public class BaseDatos {
             con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
             pstm = con.prepareStatement(sql);
             int resultado = pstm.executeUpdate();
-            //Añadimos un JOptionPane para comunicar que el animal seleccionado se ha borrado correctamente
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
+
+
+
+    public List<Animal> getAllAnimals(){
+        List<Animal> returnList = new ArrayList<>();
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "SELECT * FROM ANIMAL";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                Animal a = new Animal();
+                a.setNombre(rs.getString("nombre"));
+                a.setOjos(rs.getInt("ojos"));
+                a.setPatas(rs.getInt("patas"));
+                a.setPeligrosidad(rs.getInt("peligrosidad"));
+                returnList.add(a);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnList;
+
+    }
+
+    public boolean addAnimal(Animal a) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "INSERT INTO ANIMAL(nombre,ojos,patas,peligrosidad) VALUES" +
+                "('"+a.getNombre()+"',"+a.getOjos()+","+a.getPatas()+","+a.getPeligrosidad()+")";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            int resultado = pstm.executeUpdate();
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
+
+
+    public boolean deleteAnimal(String input) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "DELETE FROM ANIMAL WHERE NOMBRE = ?";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1,input);
+            int resultado = pstm.executeUpdate();
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
+
+    public boolean editAnimal(Animal ax) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "UPDATE ANIMAL SET nombre='"+ax.getNombre()+"', ojos="+ax.getOjos()+"," +
+                "patas="+ax.getPatas()+"," +
+                "peligrosidad="+ax.getPeligrosidad()+"" +
+                "WHERE nombre='"+ax.getNombre()+"'";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            int resultado = pstm.executeUpdate();
+            if (resultado==1) {
+                returnValue = true;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                pstm.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return returnValue;
+    }
+
+    public boolean administrador(String input) {
+        boolean returnValue = false;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        String sql = "UPDATE USUARIO set rol = 1 WHERE LOGIN = ?";
+        try{
+            Class.forName(Driver);
+            con = DriverManager.getConnection(URL,BBDDUser,BBDDPass);
+            pstm = con.prepareStatement(sql);
+            pstm.setString(1,input);
+            int resultado = pstm.executeUpdate();
             if (resultado==1) {
                 returnValue = true;
             }

@@ -18,6 +18,8 @@ public class GestionUsuarios extends JPanel{
 		JButton borraButton = new JButton("Borrar usuario");
 		JButton addButton = new JButton("Aniadir usuario");
 		JButton editButton = new JButton("Editar usuario");
+		JButton adminButton = new JButton("Convertir en admin");
+
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Apellido");
@@ -35,7 +37,7 @@ public class GestionUsuarios extends JPanel{
 	    barra.setMaximumSize(new Dimension(500,300));
 	    add(barra, BorderLayout.CENTER);
 
-	    JPanel contenedorBotonera = new JPanel(new GridLayout(1,3,30,30));
+	    JPanel contenedorBotonera = new JPanel(new GridLayout(1,4,30,30));
 	    contenedorBotonera.setSize(500,100);
 	    contenedorBotonera.setMaximumSize(new Dimension(500,100));
 
@@ -58,14 +60,36 @@ public class GestionUsuarios extends JPanel{
 			}
 		});
 
+		adminButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent evt){
+				daPermisosAdministrador();
+			}
+		});
+
 	    contenedorBotonera.add(addButton);
 		contenedorBotonera.add(editButton);
 	    contenedorBotonera.add(borraButton);
+	    contenedorBotonera.add(adminButton);
 
 
 	    add(contenedorBotonera, BorderLayout.SOUTH);
 
 		
+	}
+
+	private void daPermisosAdministrador() {
+		String input = JOptionPane.showInputDialog("Inserta el login del usuario que quieres convertir en administrador");
+		if(input!=null && !input.equals("")) {
+			BaseDatos bbdd = new BaseDatos();
+			if (bbdd.administrador(input)) {
+				rellenaFilas();
+				JOptionPane.showMessageDialog(null, "Usuario convertido en administrador correctamente");
+			} else {
+				JOptionPane.showMessageDialog(null, "Ha sido imposible convertir en administrador el usuario con login: "+input, "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}else{
+			JOptionPane.showMessageDialog(null, "Introduce un login para ser convertido en administrador", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private void rellenaFilas() {
