@@ -173,6 +173,7 @@ public class GestionUsuarios extends JPanel{
 		if(input!=null && !input.equals("")) {
 			BaseDatos bbdd = new BaseDatos();
 			if (bbdd.deleteUsuario(input)) {
+				rellenaFilas();
 				JOptionPane.showMessageDialog(null, "Usuario borrado correctamente");
 			} else {
 				JOptionPane.showMessageDialog(null, "Ha sido imposible borrar el usuario con login: "+input, "Error", JOptionPane.ERROR_MESSAGE);
